@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Sayı Tahmin Oyunu</h1>
+    <br>
+  <label id="tahmin-sirasi">1. tahmini girin:</label>
+  <input type="number" id="tahmin">
+  <br>
+  <button onclick="tahminEt()">Tahmin Yap</button>
+  <hr>
+  <label id="sonuc"></label>
+  <script>
+    const rastgeleSayi = Math.floor(Math.random() * 100) + 1;
+let tahminSayisi = 1;
+
+function tahminEt() {
+  const tahmin = document.getElementById("tahmin").value;
+  if (tahmin < 1 || tahmin > 100) {
+    document.getElementById("sonuc").innerHTML = "1 ile 100 arasında bir sayı girin.";
+    return;
+  }
+
+  if (tahminSayisi <= 7) {
+    if (tahmin == rastgeleSayi) {
+      document.getElementById("sonuc").innerHTML = `Sayı ${tahminSayisi} denemede bulundu`;
+      return;
+    } else if (tahmin < rastgeleSayi) {
+      document.getElementById("sonuc").innerHTML = "Daha büyük bir sayı girin.";
+    } else {
+      document.getElementById("sonuc").innerHTML = "Daha küçük bir sayı girin.";
+    }
+    tahminSayisi++;
+    if (tahminSayisi > 7 ) {
+      document.getElementById("sonuc").innerHTML = `Deneme hakkınız kalmadı. Kaybettiniz... Doğru sayı: ${rastgeleSayi}`;
+      return;
+    }
+    document.getElementById("tahmin-sirasi").innerHTML = `${tahminSayisi}. tahmini girin:`;
+}
+  }
+
+
+  </script>
+</body>
+</html>
